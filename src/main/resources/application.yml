@@ -22,10 +22,6 @@ spring:
        testWhileIdle: true
        testOnBorrow: false
        testOnReturn: false
-    security:
-      user:
-        name: admin
-        password: 123456
 
 mybatis:
   mapperLocations: com/example/demo/mapper/*.xml

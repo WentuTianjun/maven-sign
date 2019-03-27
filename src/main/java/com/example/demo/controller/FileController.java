@@ -25,8 +25,7 @@ public class FileController {
     public Result<String> uploadFile(@ApiParam(value = "上传文件", required = true) MultipartFile file) {
 
         String result = FileUtils.uploadFile(file);
-        Result<String> ok = Result.ok();
-        ok.setResult(result);
+        Result<String> ok = Result.ok(result);
         return ok;
     }
 
