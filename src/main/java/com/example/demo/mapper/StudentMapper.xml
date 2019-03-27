@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.StudentDao">
+	<resultMap id="baseResultMap" type="com.example.demo.domain.Student">
+		<result column="id" property="id" />
+		<result column="student_name" property="studentName" />
+		<result column="gender" property="gender" />
+	</resultMap>
+
+	<sql id="baseColumnList">
+		id,student_name,gender
+	</sql>
+
+	<sql id="baseWhereClause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id=#{id}
+			</if>
+			<if test="studentName != null">
+				and student_name=#{studentName}
+			</if>
+			<if test="gender != null">
+				and gender=#{gender}
+			</if>
+		</trim>
+	</sql>
+
+	<sql id="selectiveSetClause">
+		<trim suffixOverrides=",">
+			<if test="studentName != null">
+				student_name=#{studentName},
+			</if>
+			<if test="gender != null">
+				gender=#{gender},
+			</if>
+		</trim>
+	</sql>
+
+	<!--<insert id="add" parameterType="Object">-->
+		<!--insert into-->
+		<!--mrbs_base_info(id,base_key,base_type,base_value)-->
+		<!--values(#{id},#{baseKey},#{baseType},#{baseValue})-->
+	<!--</insert>-->
+
+	<!--<update id="update" parameterType="Object">-->
+		<!--update mrbs_base_info set-->
+		<!--base_key=#{baseKey},base_type=#{baseType},base_value=#{baseValue}-->
+		<!--where id=#{id}-->
+	<!--</update>-->
+
+	<!--<update id="updateBySelective" parameterType="Object">-->
+		<!--update mrbs_base_info set-->
+		<!--<include refid="selectiveSetClause" />-->
+		<!--where id=#{id}-->
+	<!--</update>-->
+
+	<!--<delete id="delete" parameterType="Object">-->
+		<!--delete from mrbs_base_info where-->
+		<!--id=#{id}-->
+	<!--</delete>-->
+
+	<select id="queryById" resultMap="baseResultMap" parameterType="Object">
+		select
+		<include refid="baseColumnList" />
+		from student where id=#{id}
+	</select>
+
+	<!--<select id="queryByCount" resultType="java.lang.Integer"-->
+		<!--parameterType="Object">-->
+		<!--select count(1) from mrbs_base_info-->
+		<!--<include refid="baseWhereClause" />-->
+	<!--</select>-->
+
+	<!--<select id="queryByList" resultMap="baseResultMap"-->
+		<!--parameterType="Object">-->
+		<!--select-->
+		<!--<include refid="baseColumnList" />-->
+		<!--from mrbs_base_info-->
+		<!--<include refid="baseWhereClause" />-->
+	<!--</select>-->
+</mapper>

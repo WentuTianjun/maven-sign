@@ -1,0 +1,33 @@
+server:
+    port: 8088
+    session-timeout: 30
+    tomcat.max-threads: 450
+    tomcat.uri-encoding: UTF-8
+spring:
+    application:
+          name: maven-sign
+    datasource:
+       name: honycloud
+       type: com.alibaba.druid.pool.DruidDataSource
+       url: jdbc:mysql://47.96.152.91:3306/linux_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+       username: root
+       password: root
+       driver-class-name: com.mysql.jdbc.Driver
+       minIdle: 3
+       maxActive: 20
+       initialSize: 1
+       timeBetweenEvictionRunsMillis: 3000
+       minEvictableIdleTimeMillis: 300000
+       validationQuery: select 'x'
+       testWhileIdle: true
+       testOnBorrow: false
+       testOnReturn: false
+    security:
+      user:
+        name: admin
+        password: 123456
+
+mybatis:
+  mapperLocations: com/example/demo/mapper/*.xml
+  typeAliasesPackage: com.example.demo.domain.entity
+
